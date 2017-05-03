@@ -1,7 +1,7 @@
-'''
-Numbers are arrays in which the 0-th digit as the integer part,
-and the following items are the n-1 decimal points (for an array of length n).
-'''
+#'''
+#Numbers are arrays in which the 0-th digit as the integer part,
+#and the following items are the n-1 decimal points (for an array of length n).
+#'''
 
 
 def sum_n_decimals(num1, num2):
@@ -14,10 +14,10 @@ def sum_n_decimals(num1, num2):
     n = len(num1)
 
     # Negative values: take all decimal points and make them negative too
-    if num1[0] < 0:
+    if num1[0] < 0 and num1[1]>0:
         for i in range(1, n):
             num1[i] = - num1[i]
-    elif num2[0] < 0:
+    elif num2[0] < 0 and num2[1]>0:
         for i in range(1, n):
             num2[i] = - num2[i]
 
@@ -35,9 +35,6 @@ def sum_n_decimals(num1, num2):
             num1[-i] += 10
             num1[-i - 1] -= 1
     return num1
-
-
-def sub_n_decimals(num1,num2):
 
 
 def prod_n_decimals(num1, num2):
@@ -75,13 +72,21 @@ def prod_n_decimals(num1, num2):
 def quot_n_decimals(num1, num2):
     n = max(len(num1),len(num2))
     num3 = [0 for x in range(n)]
-
-    for i in range(n):
-        q = num1[i] / num2[0]
-        num3[i] = q
-
+    i = 0
+    while i <n:
+      q=0
+      boo = True
+      while boo:
+        x = sum_n_decimals(num1,-1*num2)
+        if x[0]>0:
+          q += 1
+          num1 = x
+        else:
+          bool = False
+      num3[i]=q
+      i+=1
+    return num3
 
 
 
 print quot_n_decimals([1,0,0,0,0,0,0],[3,0,0])
-
