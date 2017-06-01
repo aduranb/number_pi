@@ -1,11 +1,16 @@
 # Calculating as many decimals of number pi as possible
 
-To be fair, this was an idea that I had when I was a Physics undergraduate: how did all this brainiacs to come up with decimals of number pi. It is a project that touches a lot of computer programming logic, functions and memory management in Python.
+To be fair, this was an idea that I had when I was a Physics undergraduate: how did all this brainiacs come up with decimals of number pi. I did not find anything related on Google so I decided to give it a try myself, hoping that some smart guy will take advantage of this and even suggest some enhancements.
+
+From the educational perspective, this project touches most of the Object Oriented programming features that every intermediate/advanced Python programmer should know: classes, inheritance, exceptions, ...
+
+I am very dedicated to write a complete documentation on all this. You can find it by simply calling the __doc__ method on each class/function. Let me know if you find anything that is not clear so that I can improve that documentation.
+
 As part of the creation of this code, a library to operate with big numbers was created. Its intended purpose may vary.
 
 **05-May-2017**: It is intended in the future to treat this big numbers as a class on its own. For now (Patch 1), they are considered lists, where the index defines uniquely its decimal position (with 0 meaning integer).
 
-**01-Jun-2017**: BigNo class and associated functions (sum,product,division) were added (Patch 2).
+**01-Jun-2017**: BigNo class and associated functions (sum,product,division) were added (Patch 2). For now, the previous n_decimals list approach will remain, but will be deprecated in the future.
 
 ## Getting started
 
