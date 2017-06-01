@@ -5,10 +5,12 @@ As part of the creation of this code, a library to operate with big numbers was 
 
 **05-May-2017**: It is intended in the future to treat this big numbers as a class on its own. For now (Patch 1), they are considered lists, where the index defines uniquely its decimal position (with 0 meaning integer).
 
+**01-Jun-2017**: BigNo class and associated functions (sum,product,division) were added (Patch 2).
+
 ## Getting started
 
 ### Prerequisites
-In the most up-to-date version (Patch 1), there is no need for any library to be preinstalled to run this code. Used an IDE with Python version 2.7.11 as a compiler.
+In the most up-to-date version (Patch 2), there is no need for any library to be preinstalled to run this code. Used an IDE with Python version 2.7.11 as a compiler.
 
 ## Contributing
 
