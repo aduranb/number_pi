@@ -8,9 +8,11 @@ I am very dedicated to write a complete documentation on all this. You can find 
 
 As part of the creation of this code, a library to operate with big numbers was created. Its intended purpose may vary.
 
-**05-May-2017**: It is intended in the future to treat this big numbers as a class on its own. For now (Patch 1), they are considered lists, where the index defines uniquely its decimal position (with 0 meaning integer).
+**05-May-2017**: __DONE__It is intended in the future to treat this big numbers as a class on its own. For now (Patch 1), they are considered lists, where the index defines uniquely its decimal position (with 0 meaning integer).
 
 **01-Jun-2017**: BigNo class and associated functions (sum,product,division) were added (Patch 2). For now, the previous n_decimals list approach will remain, but will be deprecated in the future.
+
+**02-Jun-2017**: Calculating pi using BigNo class is now included, along with some performance improvements in bigno document.
 
 ## Getting started
 
@@ -20,6 +22,13 @@ In the most up-to-date version (Patch 2), there is no need for any library to be
 ## Contributing
 
 Please read [CONTRIBUTING.md] for details on our code of conduct, and the process for submitting pull requests to us.
+
+#### To Do
+See the follwing list for contribution ideas that the author is expected to do at some point.
+
+- __Include different approaches to number pi (for now, it's just euler)__. Leibniz to be included, but it's a slower method.
+
+- __On bigno, include square roots as well__.
 
 ## Authors
 

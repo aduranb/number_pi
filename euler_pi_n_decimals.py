@@ -54,7 +54,7 @@ def euler_pi(i, n):
     # Avoid unnecessary calculations by storing factorial i as f
     f = factorial(i)
     # Make use of quotient_n_decimals to transform the division into number_list format
-    return quotient_n_decimals((f * f) * 2 ** (i + 1), factorial(2 * i + 1), n)
+    return quotient_n_decimals((f * f) * pow(2,i+1), factorial(2 * i + 1), n)
 
 
 def number_pi_euler(dec_points):
