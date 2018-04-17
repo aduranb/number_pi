@@ -2,7 +2,6 @@ import unittest
 import random
 from longdecimals import LongDecimal
 
-
 def ciphers_generator():
         """Generate a valid ciphers list of up to 9 decimals."""
         return [random.randint(0, 9) for i in range(random.randint(1, 10))]
@@ -81,6 +80,24 @@ class TestLongDecimal(unittest.TestCase):
 
             with self.assertRaises(Exception):
                     LongDecimal(ciphers=invalid_ciphers)
+
+    def test_carry_over(self):
+            """All ciphers must fall within [0, 10)."""
+            ciphers = [0, 12, 30, 1]
+            expected_result = [1, 5, 0, 1]
+
+            ld = LongDecimal(ciphers=ciphers)
+            self.assertEqual(ld._ciphers, expected_result)
+
+    def test_a_negative_cipher_is_carried_over(self):
+            """
+            Test that negative ciphers are carried over:
+            When substracting two numbers, negative ciphers may appear.
+            If that happens, the previous cipher must be reduced by the
+            adequate amount to make that negative cipher back to [0, 10).
+            """
+            pass
+
 
 
 if __name__ == '__main__':

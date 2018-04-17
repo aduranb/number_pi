@@ -13,12 +13,14 @@ class LongDecimal():
         if not isinstance(negative, bool):
             raise Exception('The parameter negative must be a boolean.')
 
+        self._ciphers = ciphers
+        self.carryover()
+
         if any([cipher < 0 for cipher in ciphers]):
             self._negative = True
+            self._ciphers = [abs(cipher) for cipher in ciphers]
         else:
             self._negative = negative
-
-        self._ciphers = [abs(cipher) for cipher in ciphers]
 
     def nodecimals(self):
         """Return number of decimals."""
@@ -33,12 +35,13 @@ class LongDecimal():
         return self._negative
 
     def carryover(self):
-        """Ammends the ciphers to ensure all of them fall in [0,10]."""
-        for i in range(1, self.nodecimals + 1):
-            tens = self._ciphers[i] // 10
+        """Ammends the ciphers to ensure all of them fall in [0,10)."""
+        for i in range(1, self.nodecimals() + 1):
+            tens = self._ciphers[-i] // 10
+            print(tens)
             if tens > 0:
-                self._ciphers[i] -= 10 * tens
-                self._ciphers[i - 1] += 10
+                self._ciphers[-i] -= 10 * tens
+                self._ciphers[-i - 1] += 1
 
     def __repr__(self):
         """Print LongDecimal instance."""
