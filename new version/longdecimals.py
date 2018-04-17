@@ -36,12 +36,19 @@ class LongDecimal():
 
     def carryover(self):
         """Ammends the ciphers to ensure all of them fall in [0,10)."""
-        for i in range(1, self.nodecimals() + 1):
-            tens = self._ciphers[-i] // 10
-            print(tens)
-            if tens > 0:
-                self._ciphers[-i] -= 10 * tens
+        for i in range(1, len(self._ciphers)):
+            while self._ciphers[-i] >= 10:
+                self._ciphers[-i] -= 10
                 self._ciphers[-i - 1] += 1
+            while self._ciphers[-i] < 0:
+                self._ciphers[-i] += 10
+                self._ciphers[-i - 1] -= 1
+        # for i in range(1, self.nodecimals() + 1):
+        #     tens = self._ciphers[-i] // 10
+        #     print(tens)
+        #     if tens > 0:
+        #         self._ciphers[-i] -= 10 * tens
+        #         self._ciphers[-i - 1] += 1
 
     def __repr__(self):
         """Print LongDecimal instance."""

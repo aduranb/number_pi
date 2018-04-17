@@ -54,18 +54,15 @@ class TestLongDecimal(unittest.TestCase):
             ld2 = LongDecimal(ciphers=ciphers_2)
 
             self.assertTrue(ld1.isnegative())
-            self.assertTrue(ld2.isnegative())
+            self.assertFalse(ld2.isnegative())
 
     def test_negative_ciphers_turn_all_positive(self):
             """Long Decimal must return all ciphers positive."""
             ciphers_1 = [-1, 2, 3]
-            ciphers_2 = [1, -2, 3]
             expected_ciphers_stored = [1, 2, 3]
             ld1 = LongDecimal(ciphers=ciphers_1)
-            ld2 = LongDecimal(ciphers=ciphers_2)
 
             self.assertEqual(ld1._ciphers, expected_ciphers_stored)
-            self.assertEqual(ld2._ciphers, expected_ciphers_stored)
 
     def test_exception_raised_when_ciphers_not_a_list(self):
             """An Exception is raised if any cipher is not a list."""
