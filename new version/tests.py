@@ -2,6 +2,7 @@ import unittest
 import random
 from longdecimals import LongDecimal
 
+
 def ciphers_generator():
         """Generate a valid ciphers list of up to 9 decimals."""
         return [random.randint(0, 9) for i in range(random.randint(1, 10))]
@@ -93,7 +94,36 @@ class TestLongDecimal(unittest.TestCase):
             If that happens, the previous cipher must be reduced by the
             adequate amount to make that negative cipher back to [0, 10).
             """
-            pass
+            ciphers = [1, -2, 3]
+            expected_result = [0, 8, 3]
+            ld = LongDecimal(ciphers=ciphers)
+
+            self.assertEqual(ld._ciphers, expected_result)
+
+    def test_dividebyten_method(self):
+            """
+            Test that divide by ten method works as expected:
+            insert a 0 at the beginning of the ciphers list.
+            keeplast=False, then len(ciphers)
+            remains constant after applying method;
+            keeplast=True, then len(ciphers_after) = len(ciphers_before) + 1.
+            """
+            ciphers = ciphers_generator()
+            ld = LongDecimal(ciphers=ciphers)
+
+            len_before = len(ciphers)
+            self.assertEqual(len_before, len(ld._ciphers))
+
+            ld.dividebyten(keeplast=True)
+
+            # Length increments by 1
+            self.assertEqual(len_before + 1, len(ld._ciphers))
+
+            ld.dividebyten(keeplast=False)
+
+            # Now length remains constant
+            self.assertEqual(len_before + 1, len(ld._ciphers))
+
 
 
 
