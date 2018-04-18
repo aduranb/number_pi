@@ -72,3 +72,24 @@ class LongDecimal():
                 [str(self._ciphers[i]) for i in range(1, nodecimals + 1)])
         return str(self._ciphers[0]) + "." + ''.join(
                 [str(self._ciphers[i]) for i in range(1, nodecimals + 1)])
+
+    def __abs__(self):
+        """abs(LongDecimal)."""
+        return LongDecimal(ciphers=self._ciphers, negative=False)
+
+    def __len__(self):
+        """len(LongDecimal)."""
+        return len(self._ciphers)
+
+    def __eq__(self, ld):
+        """Return True if self == ld."""
+        if self._ciphers == ld._ciphers and self._negative is ld._negative:
+            return True
+        return False
+
+    def __add__(self, ld):
+        """self + ld operator."""
+        
+
+    def __radd__(self, ld):
+        """ld + self operator."""
