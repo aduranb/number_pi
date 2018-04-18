@@ -128,6 +128,53 @@ class TestLongDecimal(unittest.TestCase):
             ciphers.insert(0, 0)
             self.assertEqual(ld._ciphers, ciphers)
 
+    def test_setprecision_with_less_precision(self):
+            """
+            Test setprecision method
+            when new_precision < current_precision.
+            """
+            ciphers = [1, 2, 3, 4, 5]
+            ld = LongDecimal(ciphers=ciphers)
+
+            self.assertEqual(len(ld), len(ciphers))
+            new_precision = 2
+
+            ld.setprecision(new_precision=new_precision)
+
+            self.assertEqual(len(ld), new_precision + 1)
+            self.assertEqual(ld._ciphers, ciphers[:new_precision + 1])
+
+    def test_setprecision_with_more_precision(self):
+            """
+            Test setprecision method
+            when new_precision > current_precision.
+            """
+            ciphers = [1, 2, 3, 4, 5]
+            ld = LongDecimal(ciphers=ciphers)
+
+            new_precision = 5
+
+            ld.setprecision(new_precision=new_precision)
+
+            self.assertEqual(len(ld), new_precision + 1)
+            self.assertEqual(ld._ciphers, ciphers + [0] * (
+                new_precision - len(ciphers) + 1))
+
+    def test_setprecision_with_same_precision(self):
+            """
+            Test that setprecision with the same precision
+            doesn't change the Long Decimal.
+            """
+            ciphers = [1, 2, 3, 4, 5]
+            ld = LongDecimal(ciphers=ciphers)
+
+            new_precision = len(ciphers) - 1
+
+            ld.setprecision(new_precision=new_precision)
+
+            self.assertEqual(len(ld), len(ciphers))
+            self.assertEqual(ld._ciphers, ciphers)
+
     def test_magic_method_abs(self):
             """Test __abs__ method."""
             ciphers = ciphers_generator()
@@ -182,6 +229,19 @@ class TestLongDecimal(unittest.TestCase):
             self.assertFalse(ld == ld2)
             self.assertTrue(ld == ld3)
             self.assertFalse(ld is ld3)
+
+    def test_magic_method_add(self):
+            """Test __add__ method."""
+            ciphers_1 = [1, 2, 3, 4]
+            ld_1 = LongDecimal(ciphers=ciphers_1)
+            ciphers_2 = [5, 6, 7, 8]
+            ld_2 = LongDecimal(ciphers=ciphers_2)
+            expected_result = [6, 9, 1, 2]
+            ld_3 = ld_1 + ld_2
+
+            self.assertEqual(ld_3._ciphers, expected_result)
+
+
 
 
 

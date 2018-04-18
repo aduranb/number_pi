@@ -56,16 +56,6 @@ class LongDecimal():
                 self._ciphers[-i] += 10
                 self._ciphers[-i - 1] -= 1
 
-    def setnodecimals(self, nodecimals):
-        """Set decimal precision in advance to accelerate pi computation."""
-        if nodecimals > self.nodecimals:
-            self.ciphers = self.ciphers + [0] * (nodecimals - self.nodecimals)
-            self.nodecimals = nodecimals
-        else:
-            self.ciphers = self.ciphers[:nodecimals + 1:]
-            self.nodecimals = nodecimals
-        return self
-
     def dividebyten(self, keeplast=False):
         """
         Divide by ten by inserting a 0 at the beginning of ciphers.
@@ -75,6 +65,19 @@ class LongDecimal():
         if not keeplast:
             self._ciphers.pop()
         return self
+
+    def setprecision(self, new_precision):
+        """
+        Set precision as a new number of decimals,
+        regardless of the length of ciphers when instantiated.
+        """
+        current_precision = self.nodecimals()
+
+        if new_precision > current_precision:
+            self._ciphers = self._ciphers + [0] * (
+                            new_precision - current_precision)
+        else:
+            self._ciphers = self._ciphers[:new_precision + 1:]
 
     def __repr__(self):
         """Print LongDecimal instance."""
@@ -90,10 +93,25 @@ class LongDecimal():
         return LongDecimal(ciphers=self._ciphers, negative=False)
 
     def __ge__(self, other):
+        """self >= other"""
+        if not isinstance(other, LongDecimal):
+            raise Exception("""Module comparison not defined
+                                            when other is not LongDecimal""")
+        nodecimals = max(len(self), len(other))
+        i = 0
+        while i < nodecimals:
+            if self._ciphers[i] < other._ciphers[i]:
+                return False
+            i += 1
+        return True
+
+    def __gt__(self, other):
         """self > other"""
         if not isinstance(other, LongDecimal):
             raise Exception("""Module comparison not defined
                                             when other is not LongDecimal""")
+        if  self._ciphers == other._ciphers:
+            return False
         nodecimals = max(len(self), len(other))
         i = 0
         while i < nodecimals:
@@ -112,8 +130,26 @@ class LongDecimal():
             return True
         return False
 
-    def __add__(self, ld):
+    def __add__(self, other):
         """self + ld operator."""
+        if not isinstance(other, LongDecimal):
+            raise Exception('LongDecimals can only operate with themselves.')
+
+        new_precision = max(self.nodecimals(), other.nodecimals())
+
+        self.setprecision(new_precision=new_precision)
+        other.setprecision(new_precision=new_precision)
+
+        if self._negative == other._negative:
+            ciphers = [self._ciphers[i] + other._ciphers[i] for i in range(new_precision + 1)]
+            return LongDecimal(ciphers=ciphers, negative=self._negative)
+
+        if self > other:
+            ciphers = [self._ciphers[i] - other._ciphers[i] for i in range(new_precision + 1)]
+            return LongDecimal(ciphers=ciphers, negative=self._negative)
+        else:
+            ciphers = [-self._ciphers[i] + other._ciphers[i] for i in range(new_precision + 1)]
+            return LongDecimal(ciphers=ciphers, negative=other._negative)
 
     def __radd__(self, ld):
         """ld + self operator."""
