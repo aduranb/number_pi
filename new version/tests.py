@@ -150,6 +150,27 @@ class TestLongDecimal(unittest.TestCase):
 
             self.assertEqual(len(ciphers), len(ld))
 
+    def test_magic_method_ge(self):
+            """Test __ge__ method."""
+            ciphers_greater = [1, 2, 3]
+            ciphers_equal = [1, 1, 3]
+            ciphers_less = [1, 1, 2]
+
+            ld_greater = LongDecimal(ciphers=ciphers_greater)
+            ld_equal_1 = LongDecimal(ciphers=ciphers_equal)
+            ld_equal_2 = LongDecimal(ciphers=ciphers_equal)
+            ld_less = LongDecimal(ciphers=ciphers_less)
+
+            self.assertTrue(ld_greater >= ld_equal_1)
+            self.assertTrue(ld_equal_1 >= ld_equal_2)
+            self.assertTrue(ld_equal_1 >= ld_less)
+            self.assertTrue(ld_equal_2 >= ld_less)
+
+            self.assertFalse(ld_less >= ld_equal_1)
+            self.assertFalse(ld_less >= ld_equal_2)
+            self.assertFalse(ld_equal_1 >= ld_greater)
+            self.assertFalse(ld_equal_2 >= ld_greater)
+
     def test_magic_method_eq(self):
             """Test __eq__ method."""
             ciphers = ciphers_generator()

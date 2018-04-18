@@ -2,7 +2,19 @@
 
 
 class LongDecimal():
-    """A number with a long list of decimals."""
+    """
+    A number with a long list of decimals.
+
+    Comparison (>,<, >=, <=, ==) is done at the modular level.
+    That means, it only compares the modules,
+    regardless of the instances being positive or negative.
+
+    LongDecimal(ciphers=[7,8,9], negative= True) == LongDecimal(ciphers=[7,8,9], negative= False)
+    returns True
+
+    LongDecimal(ciphers=[2,0,0], negative= True) > LongDecimal(ciphers=[1,0,0], negative= False)
+    returns True
+    """
 
     def __init__(self, ciphers=[0], negative=False):
         """Define constructor method."""
@@ -77,19 +89,31 @@ class LongDecimal():
         """abs(LongDecimal)."""
         return LongDecimal(ciphers=self._ciphers, negative=False)
 
+    def __ge__(self, other):
+        """self > other"""
+        if not isinstance(other, LongDecimal):
+            raise Exception("""Module comparison not defined
+                                            when other is not LongDecimal""")
+        nodecimals = max(len(self), len(other))
+        i = 0
+        while i < nodecimals:
+            if self._ciphers[i] < other._ciphers[i]:
+                return False
+            i += 1
+        return True
+
     def __len__(self):
         """len(LongDecimal)."""
         return len(self._ciphers)
 
     def __eq__(self, ld):
         """Return True if self == ld."""
-        if self._ciphers == ld._ciphers and self._negative is ld._negative:
+        if self._ciphers == ld._ciphers:
             return True
         return False
 
     def __add__(self, ld):
         """self + ld operator."""
-        
 
     def __radd__(self, ld):
         """ld + self operator."""
