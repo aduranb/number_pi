@@ -124,6 +124,10 @@ class TestLongDecimal(unittest.TestCase):
             # Now length remains constant
             self.assertEqual(len_before + 1, len(ld._ciphers))
 
+            # And new ciphers is the same ciphers with a 0 upfront
+            ciphers.insert(0, 0)
+            self.assertEqual(ld._ciphers, ciphers)
+
 
 
 
