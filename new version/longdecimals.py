@@ -9,10 +9,14 @@ class LongDecimal():
     That means, it only compares the modules,
     regardless of the instances being positive or negative.
 
-    LongDecimal(ciphers=[7,8,9], negative= True) == LongDecimal(ciphers=[7,8,9], negative= False)
+    LD(ciphers=[7,8,9], negative= True)
+    ==
+    LD(ciphers=[7,8,9], negative= False)
     returns True
 
-    LongDecimal(ciphers=[2,0,0], negative= True) > LongDecimal(ciphers=[1,0,0], negative= False)
+    LD(ciphers=[2,0,0], negative= True)
+    >
+    LD(ciphers=[1,0,0], negative= False)
     returns True
     """
 
@@ -110,7 +114,7 @@ class LongDecimal():
         if not isinstance(other, LongDecimal):
             raise Exception("""Module comparison not defined
                                             when other is not LongDecimal""")
-        if  self._ciphers == other._ciphers:
+        if self._ciphers == other._ciphers:
             return False
         nodecimals = max(len(self), len(other))
         i = 0
@@ -141,15 +145,15 @@ class LongDecimal():
         other.setprecision(new_precision=new_precision)
 
         if self._negative == other._negative:
-            ciphers = [self._ciphers[i] + other._ciphers[i] for i in range(new_precision + 1)]
+            ciphers = [self._ciphers[i] + other._ciphers[i]
+                       for i in range(new_precision + 1)]
             return LongDecimal(ciphers=ciphers, negative=self._negative)
 
         if self > other:
-            ciphers = [self._ciphers[i] - other._ciphers[i] for i in range(new_precision + 1)]
+            ciphers = [self._ciphers[i] - other._ciphers[i]
+                       for i in range(new_precision + 1)]
             return LongDecimal(ciphers=ciphers, negative=self._negative)
         else:
-            ciphers = [-self._ciphers[i] + other._ciphers[i] for i in range(new_precision + 1)]
+            ciphers = [-self._ciphers[i] + other._ciphers[i]
+                       for i in range(new_precision + 1)]
             return LongDecimal(ciphers=ciphers, negative=other._negative)
-
-    def __radd__(self, ld):
-        """ld + self operator."""
