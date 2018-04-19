@@ -83,6 +83,26 @@ class LongDecimal():
         else:
             self._ciphers = self._ciphers[:new_precision + 1:]
 
+    def as_quotient(self, numerator, denominator, nodecimals=0):
+        """
+        Divide two integers and
+        return the result as a LongDecimal format.
+        """
+        if not isinstance(numerator, int) or not isinstance(denominator, int):
+            raise Exception('Numerator and denominator must be integers.')
+
+        if nodecimals == 0:
+            ciphers = [numerator // denominator]
+            return LongDecimal(ciphers=ciphers, negative=False)
+
+        ciphers = []
+
+        for i in range(nodecimals + 1):
+            pass
+
+
+
+
     def __repr__(self):
         """Print LongDecimal instance."""
         nodecimals = self.nodecimals()

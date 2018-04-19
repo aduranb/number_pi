@@ -9,6 +9,10 @@ class LongDecimalEuler(LongDecimal):
     to obtain the i-th term of the Euler series up to a certain precision.
     """
 
+    def __init__(self, i=None, precision=None):
+        """Define constructor method."""
+        pass
+
     def euler_term(self, i):
         """
         Obtain numerator and denominator
@@ -18,7 +22,3 @@ class LongDecimalEuler(LongDecimal):
         numerator = (f * f) * pow(2, i+1)
         denominator = factorial(2 * i + 1)
         return numerator, denominator
-
-    # def __init__(self, i, precision):
-    #     """Define constructor method."""
-    #     pass

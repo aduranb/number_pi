@@ -175,6 +175,20 @@ class TestLongDecimal(unittest.TestCase):
             self.assertEqual(len(ld), len(ciphers))
             self.assertEqual(ld._ciphers, ciphers)
 
+    def test_as_quotient_without_nodecimals(self):
+            """
+            When nodecimals is not input,
+            as_quotient must return the number as an integer
+            in a LongDecimal format.
+            """
+            numerator = 4
+            denominator = 3
+
+            ld = LongDecimal().as_quotient(
+                        numerator=numerator, denominator=denominator)
+            self.assertEqual([1], ld._ciphers)
+
+
     def test_magic_method_abs(self):
             """Test __abs__ method."""
             ciphers = ciphers_generator()
