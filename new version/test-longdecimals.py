@@ -193,10 +193,10 @@ class TestLongDecimal(unittest.TestCase):
             The method as_quotient must return the quotient
             with predefined precision in a LongDecimal format.
             """
-            numerator = 1
-            denominator = 16
-            nodecimals = 4
-            expected_result = [0, 0, 6, 2, 5]
+            numerator = 576
+            denominator = 5040
+            nodecimals = 7
+            expected_result = [0, 1, 1, 4, 2, 8, 5, 7]
 
             ld = LongDecimal().as_quotient(
                         numerator=numerator,

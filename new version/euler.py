@@ -9,14 +9,12 @@ class LongDecimalEuler(LongDecimal):
     to obtain the i-th term of the Euler series up to a certain precision.
     """
 
-    def __init__(self, i=None, nodecimals=0):
+    def __init__(self, term=None, nodecimals=1):
         """Define constructor method."""
-        LongDecimal().__init__()
-        numerator, denominator = self.euler_term(i)
-        self = self.as_quotient(
-                        numerator=numerator,
-                        denominator=denominator,
-                        nodecimals=nodecimals)
+        LongDecimal.__init__(self)
+        numerator, denominator = self.euler_term(term)
+
+        # Call as_quotient over itself using numerator, denominator, nodecimals
 
     def euler_term(self, i):
         """
