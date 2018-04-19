@@ -188,6 +188,22 @@ class TestLongDecimal(unittest.TestCase):
                         numerator=numerator, denominator=denominator)
             self.assertEqual([1], ld._ciphers)
 
+    def test_as_quotient_with_nodecimals(self):
+            """
+            The method as_quotient must return the quotient
+            with predefined precision in a LongDecimal format.
+            """
+            numerator = 1
+            denominator = 16
+            nodecimals = 4
+            expected_result = [0, 0, 6, 2, 5]
+
+            ld = LongDecimal().as_quotient(
+                        numerator=numerator,
+                        denominator=denominator,
+                        nodecimals=nodecimals)
+
+            self.assertEqual(expected_result, ld._ciphers)
 
     def test_magic_method_abs(self):
             """Test __abs__ method."""

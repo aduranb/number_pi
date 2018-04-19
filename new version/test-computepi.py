@@ -1,6 +1,6 @@
 import unittest
 # from longdecimals import LongDecimal
-from computepi import LongDecimalEuler
+from euler import LongDecimalEuler
 from math import factorial
 
 
@@ -14,14 +14,16 @@ class TestComputePi(unittest.TestCase):
         expected_numerator = (f * f) * pow(2, i+1)
         expected_denominator = factorial(2 * i + 1)
 
-        lde = LongDecimalEuler()
+        lde = LongDecimalEuler(i)
 
         num, den = lde.euler_term(i)
 
         self.assertEqual(num, expected_numerator)
         self.assertEqual(den, expected_denominator)
 
-
+    def test_LongDecimalEuler_construction(self):
+            """Test that the instantiation works as expected."""
+            pass
 
 
 if __name__ == '__main__':
