@@ -275,10 +275,5 @@ class TestLongDecimal(unittest.TestCase):
             self.assertEqual(ld_3._ciphers, expected_result)
 
 
-
-
-
-
-
 if __name__ == '__main__':
     unittest.main()

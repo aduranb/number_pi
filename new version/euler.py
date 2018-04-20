@@ -19,10 +19,6 @@ class LongDecimalEuler(LongDecimal):
                 numerator=numerator,
                 denominator=denominator,
                 nodecimals=nodecimals)
-        # LongDecimal.__init__(self)
-        # numerator, denominator = self.euler_term(term)
-
-        # Call as_quotient over itself using numerator, denominator, nodecimals
 
     def euler_term(self, i):
         """

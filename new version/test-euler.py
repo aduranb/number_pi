@@ -20,23 +20,6 @@ class TestComputePi(unittest.TestCase):
 
         self.assertEqual(num, expected_numerator)
         self.assertEqual(den, expected_denominator)
-    #
-    # def test_as_quotient_inherited_method(self):
-    #     """
-    #     The method as_quotient must return the quotient
-    #     with predefined precision in a LongDecimal format.
-    #     """
-    #     numerator = 576
-    #     denominator = 5040
-    #     nodecimals = 7
-    #     expected_result = [0, 1, 1, 4, 2, 8, 5, 7]
-    #
-    #     ld = LongDecimalEuler(1).as_quotient(
-    #           numerator=numerator,
-    #           denominator=denominator,
-    #           nodecimals=nodecimals)
-    #
-    #     self.assertEqual(expected_result, ld._ciphers)
 
     def test_LongDecimalEuler_construction(self):
             """Test that the instantiation works as expected."""
