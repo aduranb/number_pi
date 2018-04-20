@@ -19,6 +19,8 @@ Please read [CONTRIBUTING.md] for details on our code of conduct, and the proces
 
 ## Changelog
 
+20-Apr-2018: Version 2.0 is out! This includes a complete redesign of the project, leveraging the power of Object Oriented programming to design a simple and reader friendly `compute_pi` function.
+
 05-May-2017: It is intended in the future to treat this big numbers as a class on its own. For now (Patch 1), they are considered lists, where the index defines uniquely its decimal position (with 0 meaning integer).
 
 01-Jun-2017: BigNo class and associated functions (sum,product,division) were added (Patch 2). For now, the previous n_decimals list approach will remain, but will be deprecated in the future.
