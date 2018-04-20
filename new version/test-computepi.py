@@ -20,12 +20,12 @@ class TestComputePi(unittest.TestCase):
         with self.assertRaises(Exception):
                 compute_pi("aaa")
 
-    def test_fast_compute_pi(self):
+    def test_fast_compute_pi_1_to_5(self):
         """Test a small number of decimals of pi."""
-        pi = compute_pi(4)
-        expected_result = [3, 1, 4, 1, 5]
-
-        self.assertEqual(pi._ciphers, expected_result)
+        expected_result = [3, 1, 4, 1, 5, 9]
+        for i in range(1, 5):
+                pi = compute_pi(i)
+                self.assertEqual(pi._ciphers, expected_result[: i + 1])
 
 
 if __name__ == '__main__':
