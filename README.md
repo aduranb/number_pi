@@ -1,6 +1,6 @@
 # Calculating as many decimals of number pi as possible
 
-This repository computes decimals of pi by means of the [Euler aproximation](http://mathworld.wolfram.com/PiFormulas.html)
+This repository computes decimals of pi by means of the [Euler aproximation](http://mathworld.wolfram.com/PiFormulas.html).
 
 
 ## Contributing
