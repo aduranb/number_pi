@@ -95,17 +95,17 @@ class LongDecimal():
             ciphers = [numerator // denominator]
             self._ciphers = ciphers
 
-        ciphers = [0] * (nodecimals + 1)
+        ciphers = [0] * (nodecimals + 3)
 
         x = numerator
-        for i in range(nodecimals + 1):
+        for i in range(nodecimals + 3):
             q = 0
             while x >= denominator:
                 x -= denominator
                 q += 1
             ciphers[i] = q
             x *= 10
-        self._ciphers = ciphers
+        self._ciphers = ciphers[:nodecimals + 1]
 
     def __repr__(self):
         """Print LongDecimal instance."""

@@ -8,6 +8,8 @@ def compute_pi(nodecimals=0):
     Obtain the first nodecimals number of decimals
     of pi=3.1415... by aproximation using euler's formula:
     pi = infinity_sum(  (factorial(n)**2)*(2**(n+1)) / (factorial(2*n +1)) )
+
+    http://mathworld.wolfram.com/PiFormulas.html
     """
     if not isinstance(nodecimals, int):
         raise Exception('The parameter nodecimals must be an integer.')
@@ -16,6 +18,8 @@ def compute_pi(nodecimals=0):
 
     if nodecimals == 0:
         return LongDecimal(ciphers=[3])
+
+    nodecimals += 2  # extra precision to avoid rounding up errors
 
     ciphers = [0] * (nodecimals + 1)
 
@@ -36,4 +40,5 @@ def compute_pi(nodecimals=0):
         euler_term = LongDecimalEuler(
             term=term,
             nodecimals=nodecimals)
+    pi.setprecision(nodecimals - 2)
     return pi
