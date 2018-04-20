@@ -1,6 +1,13 @@
 # Calculating as many decimals of number pi as possible
+This repository computes decimals of Pi (π) by means of the [Euler aproximation](http://mathworld.wolfram.com/PiFormulas.html).
 
-This repository computes decimals of pi by means of the [Euler aproximation](http://mathworld.wolfram.com/PiFormulas.html).
+## Intro
+The number π is by far one of the most famous, important and fascinating numbers in the history of mathematics. It is defined as the constant relationship between the perimeter and the diameter of a circle, and it has capture the imagination of countless of mathematicians throughout history.
+
+Even more so since it was proved its irrationality - that is, pi has an infinite number of decimals, and they do not repeat, i.e., they do not contain a subsequence of digits, the repetition of which makes up the tail of the representation.
+
+See a sneak peek of Person of Interest, where they talk about Pi, [here](https://www.youtube.com/watch?v=fXTRcsxG7IQ).
+
 
 
 ## Contributing
