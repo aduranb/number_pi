@@ -18,3 +18,22 @@ def compute_pi(nodecimals=0):
         return LongDecimal(ciphers=[3])
 
     ciphers = [0] * (nodecimals + 1)
+
+    pi = LongDecimal(
+            ciphers=ciphers,
+            negative=False)
+
+    term = 0
+    euler_term = LongDecimalEuler(
+        term=term,
+        nodecimals=nodecimals)
+
+    while not euler_term.iszero():
+        pi = pi + euler_term
+
+        term += 1
+
+        euler_term = LongDecimalEuler(
+            term=term,
+            nodecimals=nodecimals)
+    return pi
