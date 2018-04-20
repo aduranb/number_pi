@@ -4,7 +4,7 @@ from euler import LongDecimalEuler
 from math import factorial
 
 
-class TestComputePi(unittest.TestCase):
+class TestEuler(unittest.TestCase):
     """Test the computation of Pi."""
 
     def test_euler_term_method(self):
@@ -33,6 +33,17 @@ class TestComputePi(unittest.TestCase):
             self.assertTrue(isinstance(lde._ciphers, list))
             self.assertTrue(isinstance(lde._negative, bool))
             self.assertEqual(lde._ciphers, expected_ciphers)
+
+    def test_invalid_data_construction(self):
+            """Test instantiation with invalid data."""
+            with self.assertRaises(Exception):
+                    LongDecimalEuler(term=-1)
+            with self.assertRaises(Exception):
+                    LongDecimalEuler(term="aaa")
+            with self.assertRaises(Exception):
+                    LongDecimalEuler(nodecimals=-1)
+            with self.assertRaises(Exception):
+                    LongDecimalEuler(nodecimals="aaa")
 
 
 if __name__ == '__main__':
