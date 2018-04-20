@@ -4,9 +4,11 @@ This repository computes decimals of Pi (π) by means of the [Euler aproximation
 ## Intro
 The number π is by far one of the most famous, important and fascinating numbers in the history of mathematics. It is defined as the constant relationship between the perimeter and the diameter of a circle, and it has capture the imagination of countless of mathematicians throughout history.
 
-Even more so since it was proved its irrationality - that is, pi has an infinite number of decimals, and they do not repeat, i.e., they do not contain a subsequence of digits, the repetition of which makes up the tail of the representation.
+Even more so since it was proved its irrationality - that is, its decimal representation is endless and it never settles into a permanent repeating pattern.
 
-See a sneak peek of Person of Interest, where they talk about Pi, [here](https://www.youtube.com/watch?v=fXTRcsxG7IQ).
+Watch a scene of Person of Interest where they talk about Pi [here](https://www.youtube.com/watch?v=fXTRcsxG7IQ).
+
+Also, Pi is a transcendental number, which means that it is not a solution to any polynomial equation with rational coefficients. That implies that it is impossible to solve the ancient challenge of squaring the circle with a compass and straightedge.
 
 
 
