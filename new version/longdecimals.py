@@ -93,7 +93,7 @@ class LongDecimal():
 
         if nodecimals == 0:
             ciphers = [numerator // denominator]
-            return LongDecimal(ciphers=ciphers, negative=False)
+            self._ciphers = ciphers
 
         ciphers = [0] * (nodecimals + 1)
 
@@ -105,7 +105,7 @@ class LongDecimal():
                 q += 1
             ciphers[i] = q
             x *= 10
-        return LongDecimal(ciphers=ciphers, negative=False)
+        self._ciphers = ciphers
 
     def __repr__(self):
         """Print LongDecimal instance."""

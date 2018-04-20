@@ -184,8 +184,10 @@ class TestLongDecimal(unittest.TestCase):
             numerator = 4
             denominator = 3
 
-            ld = LongDecimal().as_quotient(
-                        numerator=numerator, denominator=denominator)
+            ld = LongDecimal()
+            ld.as_quotient(
+                        numerator=numerator,
+                        denominator=denominator)
             self.assertEqual([1], ld._ciphers)
 
     def test_as_quotient_with_nodecimals(self):
@@ -197,8 +199,9 @@ class TestLongDecimal(unittest.TestCase):
             denominator = 5040
             nodecimals = 7
             expected_result = [0, 1, 1, 4, 2, 8, 5, 7]
+            ld = LongDecimal()
 
-            ld = LongDecimal().as_quotient(
+            ld.as_quotient(
                         numerator=numerator,
                         denominator=denominator,
                         nodecimals=nodecimals)

@@ -11,8 +11,16 @@ class LongDecimalEuler(LongDecimal):
 
     def __init__(self, term=None, nodecimals=1):
         """Define constructor method."""
-        LongDecimal.__init__(self)
+        self._term = term
+        self._nodecimals = nodecimals
         numerator, denominator = self.euler_term(term)
+        LongDecimal.__init__(self)
+        self.as_quotient(
+                numerator=numerator,
+                denominator=denominator,
+                nodecimals=nodecimals)
+        # LongDecimal.__init__(self)
+        # numerator, denominator = self.euler_term(term)
 
         # Call as_quotient over itself using numerator, denominator, nodecimals
 
