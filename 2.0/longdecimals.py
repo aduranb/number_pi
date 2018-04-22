@@ -32,12 +32,6 @@ class LongDecimal():
         self._ciphers = ciphers
         self.carryover()
 
-        if any([cipher < 0 for cipher in ciphers]):
-            self._negative = True
-            self._ciphers = [abs(cipher) for cipher in ciphers]
-        else:
-            self._negative = negative
-
     def nodecimals(self):
         """Return number of decimals."""
         return len(self._ciphers) - 1
@@ -52,6 +46,9 @@ class LongDecimal():
 
     def carryover(self):
         """Ammends the ciphers to ensure all of them fall in [0,10)."""
+        if self._ciphers[0] < 0:
+            self._negative = True
+            self._ciphers[0] = abs(self._ciphers[0])
         for i in range(1, len(self._ciphers)):
             while self._ciphers[-i] >= 10:
                 self._ciphers[-i] -= 10
