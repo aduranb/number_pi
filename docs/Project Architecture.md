@@ -3,10 +3,10 @@
 
 ## Contents
 
-1. Intro
-2. LongDecimal
-3. LongDecimalEuler
-4. Compute Pi
+1. [Intro](https://github.com/ohduran/number_pi/blob/master/docs/Project%20Architecture.md#intro)
+2. [LongDecimal](https://github.com/ohduran/number_pi/blob/master/docs/Project%20Architecture.md#longdecimal)
+3. [LongDecimalEuler](https://github.com/ohduran/number_pi/blob/master/docs/Project%20Architecture.md#longdecimaleuler)
+4. [Compute Pi](https://github.com/ohduran/number_pi/blob/master/docs/Project%20Architecture.md#compute-pi)
 
 ## Intro
 
