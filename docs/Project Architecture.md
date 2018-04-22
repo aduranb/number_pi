@@ -71,7 +71,9 @@ def __init__(self, ciphers=[0], negative=False):
 This raises an exception for invalid inputs, and calls carryover() immediately after instantiating the class.
 
 #### Drawing comparison
-This are the dunder methods needed to compare two LongDecimals
+This are the dunder methods needed to compare two LongDecimals.
+
+Something worth notice is that this methods are only module comparison; the sign is disregarded, and we only take ciphers as the reference.
 
 ```python
 def __eq__(self, ld):

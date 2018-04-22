@@ -151,9 +151,9 @@ class LongDecimal():
         """len(LongDecimal)."""
         return len(self._ciphers)
 
-    def __eq__(self, ld):
-        """Return True if self == ld."""
-        if self._ciphers == ld._ciphers:
+    def __eq__(self, other):
+        """Return True if self == other."""
+        if self._ciphers == other._ciphers:
             return True
         return False
 
