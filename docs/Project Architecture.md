@@ -124,7 +124,7 @@ if self > other:
         return LongDecimal(ciphers=ciphers, negative=self._negative)
 ```
 
-3. For any other case (signs are different, and other is bigger than self), then substract self from other, and we keep other._negative as the result test_negative_ciphers_turn_all_positive
+3. For any other case (signs are different, and other is bigger than self), then substract self from other, and we keep other._negative as the result _negative.
 
 ```python
 else:
