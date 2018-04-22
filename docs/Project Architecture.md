@@ -3,18 +3,8 @@
 
 ## Contents
 
-1. Intro
+1.Intro
 2. LongDecimal
-  1. Requirements
-    1. LD contains ciphers and sign-defining boolean
-    2. Drawing comparison
-    3.  Sum of LongDecimals
-    4. LongDecimal iszero()
-    5. Set precision
-    6. abs()
-    7. print(LongDecimal)
-  2. Special methods not included as requirements
-    1. as_quotient()
 3. LongDecimalEuler
 4. Compute Pi
 
