@@ -23,4 +23,8 @@ The project uses Object Oriented programming to come up with a simple and easy t
       return pi
 ```
 
+A new class called `LongDecimal` has been defined, with the float properties needed, and a class `LongDecimalEuler`, which inherits from `LongDecimal`, is defined as terms of the Euler series used to compute pi.
+
+The function `compute_pi()` takes the desired number of decimals as an argument, and returns the value of pi in the form of a `LongDecimal`, which can be printed as a normal float (but with any desired precision).
+
 >You can read more about it [here](https://github.com/ohduran/number_pi/blob/master/docs/Project%20Architecture.md).

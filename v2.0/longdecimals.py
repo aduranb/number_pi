@@ -116,7 +116,8 @@ class LongDecimal():
 
     def __abs__(self):
         """abs(LongDecimal)."""
-        return LongDecimal(ciphers=self._ciphers, negative=False)
+        self._negative = False
+        return self
 
     def __ge__(self, other):
         """self >= other"""

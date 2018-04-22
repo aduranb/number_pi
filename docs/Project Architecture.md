@@ -1,5 +1,6 @@
 # Project Architecture
->This documentation is linked to v2.0
+>This documentation is linked to v2.0.
+## Intro
 
 As stated in the [Python documentation](https://docs.python.org/3.6/tutorial/floatingpoint.html):
 >On most machines today, floats are approximated using a binary fraction with the numerator using the first 53 bits starting with the most significant bit and with the denominator as a power of two.
@@ -22,8 +23,9 @@ Thus, we need to create a Data structure called LongDecimal with the following f
 4. I can rearrange the precision at will; that is, I can set the number of decimals of a LongDecimal after instantiation.
 5. I can apply abs() to the LongDecimal.
 6. I can draw comparisons between LongDecimals (>, >=, <, <=, ==).
+7. print(LongDecimal) must return a string format of the number, encapsulating the data structure so that it resembles a normal float.
 
-Let's have a look at each of these features one by one with references to the class stored in `longdecimals.py`.
+Let's have a look at each of these features one by one with references to the class stored in `longdecimals.py`. An exhaustive test suite for this requirements can be found [here](https://github.com/ohduran/number_pi/blob/master/2.0/test-longdecimals.py).
 
 #### LongDecimal contains ciphers and a sign-defining boolean
 
@@ -131,4 +133,94 @@ else:
         ciphers = [-self._ciphers[i] + other._ciphers[i]
                    for i in range(new_precision + 1)]
         return LongDecimal(ciphers=ciphers, negative=other._negative)
+```
+
+#### LongDecimal iszero()
+This will be useful when we want to set a condition for the while loop.
+
+```python
+def iszero(self):
+      """Return True if all ciphers are zero."""
+      return all(cipher == 0 for cipher in self._ciphers)
+```
+#### Set the precision of LongDecimal
+```python
+def setprecision(self, new_precision):
+    """
+    Set precision as a new number of decimals,
+    regardless of the length of ciphers when instantiated.
+    """
+    current_precision = self.nodecimals()
+
+    # if the new precision is bigger than current one, add zeros at the end
+    if new_precision > current_precision:
+        self._ciphers = self._ciphers + [0] * (
+                        new_precision - current_precision)
+    # otherwise, slice the ciphers up to the new precision
+    else:
+        self._ciphers = self._ciphers[:new_precision + 1:]
+```
+#### Abs()
+```python
+def __abs__(self):
+    """abs(LongDecimal)."""
+    self._negative = False
+    return self
+```
+
+#### print(LongDecimal)
+To print a LongDecimal like a built-in float, we defined the __repr__ method:
+
+```python
+def __repr__(self):
+    """Print LongDecimal instance."""
+    nodecimals = self.nodecimals() # avoid constantly calling self
+    # add the minus sign if the number is negative
+    if self._negative:
+        return "-", str(self._ciphers[0]) + "." + ''.join(
+            [str(self._ciphers[i]) for i in range(1, nodecimals + 1)])
+    return str(self._ciphers[0]) + "." + ''.join(
+            [str(self._ciphers[i]) for i in range(1, nodecimals + 1)])
+```
+### Special methods not included as requests
+A particular set of methods have been included that will facilitate the construction of terms of the Euler series.
+
+#### as_quotient()
+To facilitate the construction of a quotient between two integers without having to define a dunder method to set the logic for division, the method as_quotient() is input two integers and will transform self to become the quotient between the numerator and the denominator, with a predefined number of decimals.
+
+The algorithm is the one we used in primary school:
+
+1. Starting with cipher `i = 0`, substract a number of times q the divisor to the dividend, provided that dividend never becomes negative.
+2. Store q as the i-th cipher.
+3. Multiply dividend by 10, move onto the next cipher `i += 1`.
+4. Repeat until precision is reached.
+
+A special case for `nodecimals=0` is included: just return the ciphers list as the pure division `//` between the numerator and denominator.
+
+One thing we found when testing the end result was that the precision wasn't good enough; thus, we decided to use extra precision (two added decimals), and constrain the result back. This improved the result without losing to much efficiency in the algorithm.
+
+```python
+def as_quotient(self, numerator, denominator, nodecimals=0):
+      """
+      Divide two integers and
+      return the result as a LongDecimal format.
+      """
+      if not isinstance(numerator, int) or not isinstance(denominator, int):
+          raise Exception('Numerator and denominator must be integers.')
+
+      if nodecimals == 0:
+          ciphers = [numerator // denominator]
+          self._ciphers = ciphers
+
+      ciphers = [0] * (nodecimals + 3)
+
+      x = numerator
+      for i in range(nodecimals + 3):
+          q = 0
+          while x >= denominator:
+              x -= denominator
+              q += 1
+          ciphers[i] = q
+          x *= 10
+      self._ciphers = ciphers[:nodecimals + 1]
 ```
