@@ -26,12 +26,24 @@ class LongDecimalEuler(LongDecimal):
                 denominator=denominator,
                 nodecimals=nodecimals)
 
+    def factorial_from_to(self, start, end):
+            """A way to simplificate the Euler equation."""
+            factor = 1
+            for i in range(end + 1, start + 1):
+                    factor *= i
+            return factor
+
     def euler_term(self, i):
         """
         Obtain numerator and denominator
         of the i-th term in the Euler series.
         """
-        f = factorial(i)
-        numerator = (f * f) * pow(2, i + 1)
-        denominator = factorial(2 * i + 1)
+        # f = factorial(i)
+        # numerator = (f * f) * pow(2, i + 1)
+        # denominator = factorial(2 * i + 1)
+
+        numerator = factorial(i) * pow(2, i + 1)
+        denominator = self.factorial_from_to(2 * i + 1, i)
+
+        #print(numerator, denominator)
         return numerator, denominator

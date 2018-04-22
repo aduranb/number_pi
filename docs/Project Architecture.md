@@ -205,15 +205,12 @@ One thing we found when testing the end result was that the precision wasn't goo
 def as_quotient(self, numerator, denominator, nodecimals=0):
       """
       Divide two integers and
-      return the result as a LongDecimal format.
+      return the result as LongDecimal format.
       """
-      if not isinstance(numerator, int) or not isinstance(denominator, int):
-          raise Exception('Numerator and denominator must be integers.')
-
       if nodecimals == 0:
           ciphers = [numerator // denominator]
           self._ciphers = ciphers
-
+          return LongDecimal(ciphers=ciphers)
       ciphers = [0] * (nodecimals + 3)
 
       x = numerator
@@ -224,7 +221,9 @@ def as_quotient(self, numerator, denominator, nodecimals=0):
               q += 1
           ciphers[i] = q
           x *= 10
-      self._ciphers = ciphers[:nodecimals + 1]
+      ciphers = ciphers[:nodecimals + 1]
+      self._ciphers = ciphers
+      return LongDecimal(ciphers=ciphers)
 ```
 
 ## LongDecimalEuler

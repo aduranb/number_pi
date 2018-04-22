@@ -13,7 +13,7 @@ class TestLongDecimal(unittest.TestCase):
 
     def test_iszero_method(self):
         """Test iszero method."""
-        ciphers = ciphers_generator()
+        ciphers = [1, 2, 3]
         ld = LongDecimal(ciphers=ciphers)
         zero = LongDecimal(ciphers=[0])
         zerodefault = LongDecimal()
@@ -184,8 +184,7 @@ class TestLongDecimal(unittest.TestCase):
             numerator = 4
             denominator = 3
 
-            ld = LongDecimal()
-            ld.as_quotient(
+            ld = LongDecimal().as_quotient(
                         numerator=numerator,
                         denominator=denominator)
             self.assertEqual([1], ld._ciphers)
@@ -199,9 +198,8 @@ class TestLongDecimal(unittest.TestCase):
             denominator = 5040
             nodecimals = 7
             expected_result = [0, 1, 1, 4, 2, 8, 5, 7]
-            ld = LongDecimal()
 
-            ld.as_quotient(
+            ld = LongDecimal().as_quotient(
                         numerator=numerator,
                         denominator=denominator,
                         nodecimals=nodecimals)
