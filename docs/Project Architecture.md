@@ -333,3 +333,5 @@ def compute_pi(nodecimals=0):
 ```
 
 >Spotted a mistake? Please send a PR, following the contribution guidelines stated [here](https://github.com/ohduran/number_pi/CONTRIBUTING.md)
+
+>You want to add new functionality? Please see a list of tasks defined but not yet completed [here]()
