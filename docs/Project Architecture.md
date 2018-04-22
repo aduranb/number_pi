@@ -65,5 +65,41 @@ def __init__(self, ciphers=[0], negative=False):
           raise Exception('The parameter negative must be a boolean.')
 
       self._ciphers = ciphers
+      self._negative = negative
       self.carryover()
 ```
+This raises an exception for invalid inputs, and calls carryover() immediately after instantiating the class.
+
+#### Drawing comparison
+This are the dunder methods needed to compare two LongDecimals
+
+```python
+def __eq__(self, ld):
+    """Return True if self == ld."""
+    if self._ciphers == ld._ciphers:
+        return True
+    return False
+```
+
+```python
+def __gt__(self, other):
+    """self > other"""
+    if not isinstance(other, LongDecimal):
+        raise Exception("""Module comparison not defined
+                                        when other is not LongDecimal""")
+    # If equal, then false
+    if self._ciphers == other._ciphers:
+        return False
+    nodecimals = max(len(self), len(other))
+    i = 0
+    # One by one, if I find something different, return True or False accordingly
+    while i < nodecimals:
+        if self._ciphers[i] < other._ciphers[i]:
+            return False
+        if self._ciphers[i] > other._ciphers[i]:
+            return True
+        i += 1
+```
+
+#### Sum of LongDecimals
+The sum of two LongDecimals can be defined based on the _negative variable of both of them:

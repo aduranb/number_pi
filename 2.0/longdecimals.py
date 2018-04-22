@@ -30,6 +30,7 @@ class LongDecimal():
             raise Exception('The parameter negative must be a boolean.')
 
         self._ciphers = ciphers
+        self._negative = negative
         self.carryover()
 
     def nodecimals(self):
@@ -142,8 +143,9 @@ class LongDecimal():
         while i < nodecimals:
             if self._ciphers[i] < other._ciphers[i]:
                 return False
+            if self._ciphers[i] > other._ciphers[i]:
+                return True
             i += 1
-        return True
 
     def __len__(self):
         """len(LongDecimal)."""
