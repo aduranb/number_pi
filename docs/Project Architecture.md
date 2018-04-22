@@ -104,4 +104,31 @@ def __gt__(self, other):
 ```
 
 #### Sum of LongDecimals
-The sum of two LongDecimals can be defined based on the _negative variable of both of them:
+The sum of two LongDecimals can be defined based on the _negative variable of both of them. We store this method as the dunder `__add__`.
+
+1. If both signs are the same, then ciphers items must be sum for each position.
+
+```python
+if self._negative == other._negative:
+        ciphers = [self._ciphers[i] + other._ciphers[i]
+                   for i in range(new_precision + 1)]
+        return LongDecimal(ciphers=ciphers, negative=self._negative)
+```
+
+2. If signs are different, and self is bigger than other, then we substract other from self, and we keep self._negative as the result _negative
+
+```python
+if self > other:
+        ciphers = [self._ciphers[i] - other._ciphers[i]
+                   for i in range(new_precision + 1)]
+        return LongDecimal(ciphers=ciphers, negative=self._negative)
+```
+
+3. For any other case (signs are different, and other is bigger than self), then substract self from other, and we keep other._negative as the result test_negative_ciphers_turn_all_positive
+
+```python
+else:
+        ciphers = [-self._ciphers[i] + other._ciphers[i]
+                   for i in range(new_precision + 1)]
+        return LongDecimal(ciphers=ciphers, negative=other._negative)
+```
