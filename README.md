@@ -1,6 +1,20 @@
 # Calculating decimals of π
 This repository computes decimals of π (π) by means of the [Euler aproximation](http://mathworld.wolfram.com/πFormulas.html).
 
+## Installation
+Clone this repository and change directory to the correspondent folder.
+
+Then type the following on the command line:
+
+```
+python3
+
+>>> from pi import compute_pi
+>>> compute_pi(50)
+3.14159265358979323846264338327950288419716939937509
+>>>
+```
+
 ## Intro
 The number  is by far one of the most famous, important and fascinating numbers in the history of mathematics. It is defined as the constant relationship between the perimeter and the diameter of a circle, and it has captured the imagination of countless mathematicians throughout history. Even more so since it was proved its irrationality - that is, its decimal representation is endless and it never settles into a permanent repeating pattern.
 
