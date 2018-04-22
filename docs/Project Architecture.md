@@ -1,5 +1,23 @@
 # Project Architecture
 >This documentation is linked to v2.0.
+
+## Contents
+
+1. Intro
+2. LongDecimal
+  1. Requirements
+    1. LD contains ciphers and sign-defining boolean
+    2. Drawing comparison
+    3.  Sum of LongDecimals
+    4. LongDecimal iszero()
+    5. Set precision
+    6. abs()
+    7. print(LongDecimal)
+  2. Special methods not included as requirements
+    1. as_quotient()
+3. LongDecimalEuler
+4. Compute Pi
+
 ## Intro
 
 As stated in the [Python documentation](https://docs.python.org/3.6/tutorial/floatingpoint.html):
@@ -29,6 +47,7 @@ Let's have a look at each of these features one by one with references to the cl
 
 >An exhaustive test suite for this requirements can be found [here](https://github.com/ohduran/number_pi/blob/master/2.0/test-longdecimals.py).
 
+### Requirements
 #### LongDecimal contains ciphers and a sign-defining boolean
 
 The instance variables in the class will be a list called _ciphers, and the sign will be represented by a boolean called _negative, which will be True if the object is defined below 0 and False otherwise.
@@ -184,7 +203,7 @@ def __repr__(self):
     return str(self._ciphers[0]) + "." + ''.join(
             [str(self._ciphers[i]) for i in range(1, nodecimals + 1)])
 ```
-### Special methods not included as requests
+### Special methods not included as requirements
 A particular set of methods have been included that will facilitate the construction of terms of the Euler series.
 
 #### as_quotient()

@@ -1,10 +1,10 @@
 # Calculating decimals of π
-This repository computes decimals of π (π) by means of the [Euler aproximation](http://mathworld.wolfram.com/πFormulas.html).
+This repository computes decimals of Pi (π) by means of the [Euler aproximation](http://mathworld.wolfram.com/πFormulas.html).
 
 ## Installation
 Clone this repository and change directory to the correspondent folder.
 
-Then type the following on the command line:
+Then type the following on the command line to calculate the first 50 decimals of pi.
 
 ```
 python3
