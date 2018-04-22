@@ -14,13 +14,12 @@ The project uses Object Oriented programming to come up with a simple and easy t
 
 ```python
     while not euler_term.iszero():
+
           pi = pi + euler_term
 
           term += 1
 
-          euler_term = LongDecimalEuler(
-              term=term,
-              nodecimals=nodecimals)
+          euler_term = LongDecimalEuler(term=term)
       return pi
 ```
 
