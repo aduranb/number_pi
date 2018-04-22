@@ -3,7 +3,7 @@
 
 ## Contents
 
-1.Intro
+1. Intro
 2. LongDecimal
 3. LongDecimalEuler
 4. Compute Pi
