@@ -32,6 +32,6 @@ class LongDecimalEuler(LongDecimal):
         of the i-th term in the Euler series.
         """
         f = factorial(i)
-        numerator = (f * f) * pow(2, i+1)
+        numerator = (f * f) * pow(2, i + 1)
         denominator = factorial(2 * i + 1)
         return numerator, denominator

@@ -25,7 +25,9 @@ Thus, we need to create a Data structure called LongDecimal with the following f
 6. I can draw comparisons between LongDecimals (>, >=, <, <=, ==).
 7. print(LongDecimal) must return a string format of the number, encapsulating the data structure so that it resembles a normal float.
 
-Let's have a look at each of these features one by one with references to the class stored in `longdecimals.py`. An exhaustive test suite for this requirements can be found [here](https://github.com/ohduran/number_pi/blob/master/2.0/test-longdecimals.py).
+Let's have a look at each of these features one by one with references to the class stored in `longdecimals.py`.
+
+>An exhaustive test suite for this requirements can be found [here](https://github.com/ohduran/number_pi/blob/master/2.0/test-longdecimals.py).
 
 #### LongDecimal contains ciphers and a sign-defining boolean
 
@@ -169,7 +171,7 @@ def __abs__(self):
 ```
 
 #### print(LongDecimal)
-To print a LongDecimal like a built-in float, we defined the __repr__ method:
+To print a LongDecimal like a built-in float, we defined the dunder `__repr__` method:
 
 ```python
 def __repr__(self):
@@ -224,3 +226,110 @@ def as_quotient(self, numerator, denominator, nodecimals=0):
           x *= 10
       self._ciphers = ciphers[:nodecimals + 1]
 ```
+
+## LongDecimalEuler
+Once we've set up a float number, we wanted to create a more specific set of LongDecimal that could be instantiated directly as terms of the Euler series, such as LongDecimalEuler(term=term). The requirements were as follows:
+
+1. LongDecimalEuler must inherit from LongDecimal to keep the features of a LongDecimal.
+2. It must be instantiated not as ciphers or sign, but as terms in the Euler series defined in the Mathematical Approach.
+
+>An exhaustive test suite for this requirements can be found [here](https://github.com/ohduran/number_pi/blob/master/2.0/test-euler.py).
+
+To do so, we must first define the `euler_term`, method, which takes i as an argument and returns the numerator and the denominator of the i-th term of the Euler series:
+
+```python
+from math import factorial
+ # ...
+def euler_term(self, i):
+       """
+       Obtain numerator and denominator
+       of the i-th term in the Euler series.
+       """
+       f = factorial(i)
+       numerator = (f * f) * pow(2, i+1)
+       denominator = factorial(2 * i + 1)
+       return numerator, denominator
+```
+
+That was easy.
+
+Now, we instantiate the LongDecimalEuler class, inheriting from LongDecimal, and we instantiate it using the `as_quotient` method defined in `LongDecimal`. Numerator and denominator will be, of course, those calculated using the `euler_term` method that we spoke of before.
+
+```python
+def __init__(self, term=0, nodecimals=1):
+    """Define constructor method."""
+    # Avoid invalid input
+    if not isinstance(term, int) or not isinstance(nodecimals, int):
+        raise Exception('All inputs must be integers.')
+    if term < 0:
+            raise Exception('Parameter term must be positive.')
+    if nodecimals < 0:
+            raise Exception('Parameter nodecimals must be positive.')
+    # Store the information provided
+    self._term = term
+    self._nodecimals = nodecimals
+    # Calculate the Euler term
+    numerator, denominator = self.euler_term(term)
+    #Inherit from LongDecimal
+    LongDecimal.__init__(self)
+
+    # Define LongDecimalEuler as a quotient
+    self.as_quotient(
+            numerator=numerator,
+            denominator=denominator,
+            nodecimals=nodecimals)
+```
+
+## Compute Pi
+Everything is now set: we have a pseudo-float number that is defined to have as many decimals as we please, and the necessary operations to compute are also in place.
+
+It's time for the quarterback to throw the ball to the receiver. The definition of `compute_pi()` is as follows:
+
+```python
+#!environment/bin/python3
+from longdecimals import LongDecimal
+from euler import LongDecimalEuler
+
+
+def compute_pi(nodecimals=0):
+  # Exceptions for invalid input
+    if not isinstance(nodecimals, int):
+        raise Exception('The parameter nodecimals must be an integer.')
+    if nodecimals < 0:
+        raise Exception('The parameter nodecimals must be positive.')
+
+    # If you are lazy enough to not provide decimals, I'm lazy enough too
+    if nodecimals == 0:
+        return LongDecimal(ciphers=[3])
+
+    nodecimals += 2  # extra precision to avoid rounding up errors
+
+    # set up ciphers for pi
+    ciphers = [0] * (nodecimals + 1)
+
+    # Define pi as a zero with a predefined number of decimals for efficiency
+    pi = LongDecimal(
+            ciphers=ciphers,
+            negative=False)
+
+    # First term
+    term = 0
+    euler_term = LongDecimalEuler(
+        term=term,
+        nodecimals=nodecimals)
+
+    # Algorithm discussed above
+    while not euler_term.iszero():
+        pi = pi + euler_term
+
+        term += 1
+
+        euler_term = LongDecimalEuler(
+            term=term,
+            nodecimals=nodecimals)
+    pi.setprecision(nodecimals - 2)
+
+    return pi
+```
+
+>Spotted a mistake? Please send a PR, following the contribution guidelines stated [here](https://github.com/ohduran/number_pi/CONTRIBUTING.md)
