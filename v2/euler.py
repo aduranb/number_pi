@@ -38,12 +38,6 @@ class LongDecimalEuler(LongDecimal):
         Obtain numerator and denominator
         of the i-th term in the Euler series.
         """
-        # f = factorial(i)
-        # numerator = (f * f) * pow(2, i + 1)
-        # denominator = factorial(2 * i + 1)
-
         numerator = factorial(i) * pow(2, i + 1)
         denominator = self.factorial_from_to(2 * i + 1, i)
-
-        #print(numerator, denominator)
         return numerator, denominator

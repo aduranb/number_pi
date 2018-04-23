@@ -4,7 +4,7 @@ This repository computes decimals of Pi (π) by means of the [Euler aproximation
 ## Installation
 Clone this repository and change directory to the correspondent folder.
 
-Then type the following on the command line to calculate the first 50 decimals of pi.
+Then type the following on the command line to calculate the first 50 decimals of π.
 
 ```
 python3
@@ -16,7 +16,7 @@ python3
 ```
 
 ## Intro
-The number  is by far one of the most famous, important and fascinating numbers in the history of mathematics. It is defined as the constant relationship between the perimeter and the diameter of a circle, and it has captured the imagination of countless mathematicians throughout history. Even more so since it was proved its irrationality - that is, its decimal representation is endless and it never settles into a permanent repeating pattern.
+The number π is by far one of the most famous, important and fascinating numbers in the history of mathematics. Defined as the constant relationship between the perimeter and the diameter of a circle, it has captured the imagination of countless mathematicians throughout history. Even more so since it was proved its irrationality - that is, its decimal representation is endless and it never settles into a permanent repeating pattern.
 
 >Watch a scene from Person of Interest where they talk about π [here](https://www.youtube.com/watch?v=fXTRcsxG7IQ).
 
