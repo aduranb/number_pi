@@ -20,7 +20,7 @@ The project uses Object Oriented programming to come up with a simple and easy t
           term += 1
 
           euler_term = LongDecimalEuler(term=term)
-      return pi
+    return pi
 ```
 
 A new class called `LongDecimal` has been defined, with the float properties needed, and a class `LongDecimalEuler`, which inherits from `LongDecimal`, is defined as terms of the Euler series used to compute pi.
