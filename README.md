@@ -7,10 +7,7 @@ Clone this repository and change directory to the correspondent folder.
 Then type the following on the command line to calculate the first 50 decimals of π.
 
 ```
-python3
-
->>> from pi import compute_pi
->>> compute_pi(50)
+python3 pi.py 50
 3.14159265358979323846264338327950288419716939937509
 >>>
 ```
