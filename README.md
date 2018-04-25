@@ -9,7 +9,6 @@ Then type the following on the command line to calculate the first 50 decimals o
 ```
 python3 pi.py 50
 3.14159265358979323846264338327950288419716939937509
->>>
 ```
 
 ## Intro
@@ -22,6 +21,9 @@ Also, π is a transcendental number, which means that it's not a solution to any
 Both its irrationality and its trascendence force us to rephrase the challenge of calculating π, not in terms of the number itself, but in terms of the first X amount of decimals. No matter how good our algorithm is, there will always be a new decimal to be computed.
 
 You can read more about it in the [Documentation](docs/Index.md)
+
+## Requirements
+This project relies on a virtual environment to execute locally. Thus, no requirements installation is needed. However, you can find a list of the dependencies in the requirements document.
 
 ## Contributing
 >Check out how to contribute to this project [here](https://github.com/ohduran/number_pi/CONTRIBUTING.md)
