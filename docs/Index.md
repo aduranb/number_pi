@@ -13,14 +13,18 @@ euler_term = (factorial(n)**2)*(2**(n+1)) / (factorial(2*n +1))
 The project uses Object Oriented programming to come up with a simple and easy to read `compute_pi` function.
 
 ```python
-    while not euler_term.iszero():
+ciphers = [0] * precision
+pi = LongDecimal(ciphers=ciphers)
+term = 0
+euler_term = LongDecimalEuler(term=term)
 
-          pi = pi + euler_term
+while not euler_term.iszero():
+      pi = pi + euler_term
 
-          term += 1
+      term += 1
+      euler_term = LongDecimalEuler(term=term)
 
-          euler_term = LongDecimalEuler(term=term)
-    return pi
+return pi
 ```
 
 A new class called `LongDecimal` has been defined, with the float properties needed, and a class `LongDecimalEuler`, which inherits from `LongDecimal`, is defined as terms of the Euler series used to compute pi.
