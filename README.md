@@ -23,7 +23,7 @@ Both its irrationality and its trascendence force us to rephrase the challenge o
 You can read more about it in the [Documentation](docs/Index.md)
 
 ## Requirements
-This project relies on a virtual environment to execute locally. Thus, no requirements installation is needed. However, you can find a list of the dependencies in the requirements document.
+This project relies on a virtual environment to execute locally. Thus, no requirements installation is needed. However, you can find a list of the dependencies in the [requirements](https://github.com/ohduran/number_pi/blob/master/requirements.txt) document.
 
 ## Contributing
 >Check out how to contribute to this project [here](https://github.com/ohduran/number_pi/CONTRIBUTING.md)
